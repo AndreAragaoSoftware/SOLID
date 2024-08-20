@@ -13,3 +13,5 @@
 13° visualisar a base de dados (npx prisma studio)
 14° instalando o prisma client (npm install @prisma/client)
 15° criar o repositório de produtos(commit)
+16° instalando o express (npm i express & npm i @types/express -D)
+17° criou o method create (commit)

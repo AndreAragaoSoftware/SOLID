@@ -5,6 +5,7 @@ import {
   ListOutputDto,
   ProductServices,
   SellOutputDto,
+  CreateOutputDto
 } from './../product.services'
 
 // Implementa a interface ProductServices, que define os métodos para vender, comprar e listar produtos.
@@ -77,6 +78,19 @@ export class ProductServicesImplementation implements ProductServices {
 
     const output: ListOutputDto = {
       products,
+    }
+
+    return output
+  }
+
+  public async create(name: string, price: number): Promise<CreateOutputDto> {
+    const aProduct = Product.create(name, price);
+
+    await this.repository.save(aProduct);
+
+    const output: CreateOutputDto = {
+      id: aProduct.id,
+      balance: aProduct.quantity
     }
 
     return output

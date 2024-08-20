@@ -21,6 +21,11 @@ export type ListOutputDto = {
   }[];
 }
 
+export type CreateOutputDto = {
+  id: string // ID do produto criado.
+  balance: number
+}
+
 // Define uma interface "ProductServices" que estabelece os métodos para realizar operações sobre produtos,
 // como vender, comprar e listar produtos. Cada método retorna uma Promise com os respectivos DTOs.
 
@@ -28,4 +33,6 @@ export interface ProductServices {
   sell(id: string, amount: number): Promise<SellOutputDto> // Vende uma quantidade de um produto e retorna os detalhes da venda.
   buy(id: string, amount: number): Promise<BuyOutputDto> // Compra uma quantidade de um produto e retorna os detalhes da compra.
   list(): Promise<ListOutputDto> // Lista todos os produtos disponíveis com suas informações.
+  create(name: string, price: number): Promise<CreateOutputDto> // Cria o produto
+
 }
