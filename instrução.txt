@@ -1,0 +1,5 @@
+1° npm init -y
+2° npm install typescript ts-node @types/node --save-dev
+3° npx tsc --init
+4° no arquivo tsconfig abilitar e modificar isso"rootDir": "./src",  
+5° no arquivo package.json no script: "dev": "ts-node src/main.ts"
