@@ -20,5 +20,5 @@ export interface ProductRepository {
   update(product: Product): Promise<void>
 
   // O método "find" é responsável por procurar um produto existente no armazenamento.
-  find(id: string): Promise<Product>
+  find(id: string): Promise<Product | null>
 }

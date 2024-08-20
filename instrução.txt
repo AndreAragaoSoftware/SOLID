@@ -11,3 +11,5 @@
 11° modelos da base de dados(commit)
 12° criar a base de dados (npx prisma db push)
 13° visualisar a base de dados (npx prisma studio)
+14° instalando o prisma client (npm install @prisma/client)
+15° criar o repositório de produtos(commit)
