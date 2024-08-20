@@ -8,3 +8,4 @@
 8° inicializando o prisma (npx prisma init)
 9° modificando o arquivo schema.prisma(modifica para a base de dados do projeto)
 10° modifica o arquivo .env para sua base de dados
+11° modelos da base de dados(commit)
