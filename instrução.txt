@@ -3,3 +3,6 @@
 3° npx tsc --init
 4° no arquivo tsconfig abilitar e modificar isso"rootDir": "./src",  
 5° no arquivo package.json no script: "dev": "ts-node src/main.ts"
+6° criar um arquivo main.ts e criar uma classe com um método(está no primeiro commit)
+7° instalando o prima(npm i prisma --save-dev)
+8° inicializando o prisma (npx prisma init)
