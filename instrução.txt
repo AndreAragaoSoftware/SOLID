@@ -6,3 +6,5 @@
 6° criar um arquivo main.ts e criar uma classe com um método(está no primeiro commit)
 7° instalando o prima(npm i prisma --save-dev)
 8° inicializando o prisma (npx prisma init)
+9° modificando o arquivo schema.prisma(modifica para a base de dados do projeto)
+10° modifica o arquivo .env para sua base de dados
