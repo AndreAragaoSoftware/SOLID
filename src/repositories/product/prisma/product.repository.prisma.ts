@@ -8,7 +8,7 @@ export class ProductRepositoryPrisma implements ProductRepository {
   private constructor(readonly prisma: PrismaClient) {}
 
   // Método estático para criar uma instância da classe, garantindo que seja injetada uma instância de PrismaClient.
-  public build(prisma: PrismaClient) {
+  public static build(prisma: PrismaClient) {
     return new ProductRepositoryPrisma(prisma)
   }
 
