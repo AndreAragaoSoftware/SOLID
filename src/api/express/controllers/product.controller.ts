@@ -72,21 +72,33 @@ export class ProductController {
 
   // Método para vender uma quantidade de um produto.
   // Recebe o ID e a quantidade da requisição, usa os serviços para vender o produto,
-  // e responde com o saldo atualizado.
-  public async sell(request: Request, response: Response) {
-    const { id } = request.params
-    const { amount } = request.body
+  // e responde com o saldo atualizado ou um erro, se houver.
+  public async sell(request: Request, response: Response): Promise<void> {
+    try {
+      const { id } = request.params
+      const { amount } = request.body
 
-    const aRepository = ProductRepositoryPrisma.build(prisma) // Cria o repositório usando Prisma
-    const aService = ProductServicesImplementation.build(aRepository) // Cria o serviço com o repositório
+      // Cria o repositório usando Prisma
+      const aRepository = ProductRepositoryPrisma.build(prisma)
 
-    const output = await aService.sell(id, amount) // Chama o serviço para vender o produto
+      // Cria o serviço com o repositório
+      const aService = ProductServicesImplementation.build(aRepository)
 
-    const data = {
-      id: output.id,
-      balance: output.balance,
+      // Chama o serviço para vender o produto
+      const output = await aService.sell(id, amount)
+
+      // Prepara os dados da resposta com o saldo atualizado
+      const data = {
+        id: output.id,
+        balance: output.balance,
+      }
+
+      // Envia a resposta com o saldo atualizado
+      response.status(200).json(data)
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'An unexpected error occurred'
+      response.status(400).json({ message: errorMessage })
     }
-
-    response.status(200).json(data).send() // Envia a resposta com o saldo atualizado
   }
 }

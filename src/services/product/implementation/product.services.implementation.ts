@@ -20,23 +20,37 @@ export class ProductServicesImplementation implements ProductServices {
   }
 
   // Implementação do método sell, que realiza a venda de um produto.
-  // Verifica se o produto existe, realiza a venda, atualiza o produto no repositório
-  // e retorna um DTO com o saldo atualizado.
+  // Verifica se o produto existe, verifica o estoque disponível, realiza a venda,
+  // atualiza o produto no repositório e retorna um DTO com o saldo atualizado.
   public async sell(id: string, amount: number): Promise<SellOutputDto> {
+    // Busca o produto no repositório pelo ID.
     const aProduct = await this.repository.find(id)
 
+    // Verifica se o produto existe.
     if (!aProduct) {
-      throw new Error('O produto ' + id + ' não foi encontrado')
+      throw new Error(`O produto ${id} não foi encontrado`)
     }
 
+    // Verifica se a quantidade disponível no estoque é suficiente.
+    if (aProduct.quantity < amount) {
+      throw new Error(
+        `Estoque insuficiente para o produto ${id}. Disponível: ${aProduct.quantity}, solicitado: ${amount}`
+      )
+    }
+
+    // Realiza a venda do produto (subtrai a quantidade vendida do estoque).
     aProduct.sell(amount)
+
+    // Atualiza o produto no repositório com a nova quantidade.
     await this.repository.update(aProduct)
 
+    // Prepara o DTO de saída com o saldo atualizado.
     const output: SellOutputDto = {
       id: aProduct.id,
       balance: aProduct.quantity,
     }
 
+    // Retorna o DTO de saída.
     return output
   }
 
@@ -84,13 +98,13 @@ export class ProductServicesImplementation implements ProductServices {
   }
 
   public async create(name: string, price: number): Promise<CreateOutputDto> {
-    const aProduct = Product.create(name, price);
+    const aProduct = Product.create(name, price)
 
-    await this.repository.save(aProduct);
+    await this.repository.save(aProduct)
 
     const output: CreateOutputDto = {
       id: aProduct.id,
-      balance: aProduct.quantity
+      balance: aProduct.quantity,
     }
 
     return output
