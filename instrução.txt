@@ -15,3 +15,5 @@
 15° criar o repositório de produtos(commit)
 16° instalando o express (npm i express & npm i @types/express -D)
 17° criou o method create (commit)
+18° criou controller do product
+19° configurando o express (commit)
